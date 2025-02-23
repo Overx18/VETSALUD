@@ -93,7 +93,7 @@ router.post('/login.html', async (req, res) => {
       const payload = {
         sub: usuario.ID_USUARIO,
         rol: usuario.ROL_USUARIO,
-        otroAtributo: "valor"  // Puedes agregar más atributos
+        otroAtributo: "valor"
       };
       const jwtConstructor = new SignJWT({rol: usuario.ROL_USUARIO}).setSubject(usuario.ID_USUARIO);
 
