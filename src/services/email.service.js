@@ -13,7 +13,7 @@ function enviarCorreoElectronico(destinatario) {
     from: 'laudmoontest@gmail.com',
     to: destinatario,
     subject: 'Bienvenido a VetSalud',
-    text: 'Gracias por registrarte en VetSalud. Para completar tu registro, haz clic en el siguiente enlace: http://localhost:4000/login',
+    text: 'Gracias por registrarte en VetSalud. Para completar tu registro, haz clic en el siguiente enlace: http://localhost:4000/login o https://vetsalud.onrender.com/login',
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
