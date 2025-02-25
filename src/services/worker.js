@@ -3,7 +3,7 @@ const amqp = require('amqplib');
 const QUEUE_NAME = 'citas_queue';
 
 async function startWorker() {
-  const connection = await amqp.connect('amqp://localhost');
+  const connection = await amqp.connect('amqp://jeuuhsit:hsCTZvARJLOjXLHUZ7e5Ab_RMZNRk4Dk@fuji.lmq.cloudamqp.com/jeuuhsit'); //('amqp://localhost');
   const channel = await connection.createChannel();
 
   await channel.assertQueue(QUEUE_NAME, { durable: true });
