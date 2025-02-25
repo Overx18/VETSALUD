@@ -1,6 +1,6 @@
 {
     "scripts": {
-        "start": "node index.js",
+        "start": "node src/index.js",
         "dev": "nodemon src/"
     },
     "dependencies": {
@@ -24,6 +24,6 @@
         "passport-local": "^1.0.0"
     },
     "devDependencies": {
-        "nodemon": "^3.0.1"
+        "nodemon": "^3.1.9"
     }
 }
