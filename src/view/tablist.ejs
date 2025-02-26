@@ -34,7 +34,7 @@
                         <td class="tabla-cell"><%= ficha.Fecha %></td>
                         <td class="tabla-cell"><%= ficha['Detalle consulta'] %></td>
                         <td class="tabla-cell">
-                            <a href="#" class="detalles-abrir" data-ficha-id="<%= ficha.IdFicha %>" data-diagnostico="<%= ficha.Diagnostico %>" data-tratamiento="<%= ficha.Tratamiento %>" data-antecedentes="<%= ficha.Antecedentes %>">
+                            <a href="#" class="detalles-abrir" data-ficha-id="<%= ficha.IdFicha %>" data-diagnostico="<%= ficha.Diagnostico %>" data-tratamiento="<%= ficha.Tratamiento %>" data-antecedentes="<%= ficha.Antecedentes %>" data-monto="<%= ficha.Monto %>">
                                <i title="Ver más" class="fa-solid fa-bars detalles-abrir"></i>
                             </a>
                         </td>
@@ -58,6 +58,9 @@
                 </div>
                 <div class="datoP">
                     <label for="tratamiento"><strong>Tratamiento : </strong><span id="tratamiento"><%= ficha.Tratamiento %></span></label>
+                </div>
+                <div class="datoP">
+                    <label for="monto"><strong>Monto : </strong><span id="monto"><%= ficha.Monto %></span></label>
                 </div>
         </div>
         <a href="#">

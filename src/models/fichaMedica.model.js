@@ -9,7 +9,7 @@ function guardarFichaMedica(fichaMedica, callback) {
     }
 
     const query = `
-      INSERT INTO TB_FICHA_MEDICA (ID_CITA, FECHA_CREACION, ANTECEDENTES, DIAGNOSTICO, TRATAMIENTO)
+      INSERT INTO TB_FICHA_MEDICA (ID_CITA, FECHA_CREACION, ANTECEDENTES, DIAGNOSTICO, TRATAMIENTO, MONTO)
       VALUES (?, ?, ?, ?, ?);`;
 
       const { citaId, fecha, antc, diag, trat } = fichaMedica;

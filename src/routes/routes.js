@@ -56,7 +56,7 @@ router.post('/signUp.html', async (req, res) => {
     CELULAR_USUARIO: numero,
     EMAIL_USUARIO: correo,
     PASSWORD_USUARIO: contrasena,
-    ROL_USUARIO: 'Administrador', // Asigna el rol
+    ROL_USUARIO: 'Cliente', // Asigna el rol
   };
 
   ClienteController.registrarUsuario(nuevoUsuario, (error, resultado) => {
