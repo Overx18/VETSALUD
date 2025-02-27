@@ -21,20 +21,29 @@
                         <img src="/images/logo.svg" alt="">
                         <p>VetSalud</p>
                     </a>
-
                 </div>
-				<i class="fa-solid fa-bars" id="menu-abrir"></i>
+				<label class="icono-menu-comprimido" for="menu-comprimido">
+					<svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#f3f2f2">
+						<g id="SVGRepo_bgCarrier" stroke-width="0"/>
+						<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+						<g id="SVGRepo_iconCarrier"> <path d="M4 18L20 18" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+						<path d="M4 12L20 12" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/> 
+						<path d="M4 6L20 6" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/> </g>
+					</svg>
+				</label>
+				<input type="checkbox" name="" id="menu-comprimido" class="menu-comprimido">
 				<nav class="navbar container" id="nav">
-					<i class="fa-solid fa-bars" id="menu-cerrar"></i>
 					<ul class="menu">
 						<li><a href="#">Inicio</a></li>
 						<li><a href="#">Conócenos</a></li>
                         <li><a href="/login">Agendar una cita</a></li>
 						<li><a href="#">Contacto</a></li>
-                        <li><a href="login" id="iniciar">Iniciar Sesión</a></li>
-                        <li><a href="signUp" id="registro">Registrarse</a></li>
 					</ul>
 				</nav>
+				<ul class="menu" id="ingreso">
+					<li><a href="login" id="iniciar">Iniciar Sesión</a></li>
+					<li><a href="signUp" id="registro">Registrarse</a></li>
+				</ul>
 			</div>
 		</header>
 
@@ -67,7 +76,7 @@
 
 					<a class="button-buscar">
 						<div class="card-category category-sede">
-							<p>Ubicar sedes	<br> y clínicas</p>
+							<p>Ubicar sedes y clínicas</p>
 						</div>
 					</a>
 

@@ -51,11 +51,11 @@ header {
 }
 
 .container-navbar {
+	display: flex;
 	background-color: #055492;
-    display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 10rem;
+    padding: 0 5rem;
 	height: 100%;
 }
 
@@ -82,6 +82,7 @@ header {
 .navbar {
 	display: flex;
 	align-items: center;
+	justify-content: space-between;
 	padding: 1rem 0;
     height: 16rem;
     margin: 0;
@@ -97,11 +98,11 @@ header {
 
 .menu {
 	display: flex;
-	gap: 4rem;
 	align-items: center;
 }
 
 .menu li {
+	padding: 0 3rem;
 	list-style: none;
 }
 
@@ -113,7 +114,19 @@ header {
 	position: relative;
 }
 
+.icono-menu-comprimido{
+	display: none;
+	cursor: pointer;
+}
+
+.menu-comprimido{
+	display: none;
+}
+
 #iniciar {
+
+	display: flex;
+	text-align: center;
     color: #055492;
     background-color: #A8F2FE;
     padding: 1.6rem;
@@ -129,7 +142,7 @@ header {
 
 .menu a::after {
 	content: '';
-	width: 1.5rem;
+	width: 4rem;
 	height: 1px;
 	background-color: #fff;
 	position: absolute;
@@ -140,6 +153,14 @@ header {
 	transition: all 0.3s ease;
 }
 
+.menu #iniciar:hover::after{
+	opacity: 0;
+}
+
+.menu #registro:hover::after{
+	opacity: 0;
+}
+
 .menu a:hover::after {
 	opacity: 1;
 }
@@ -148,13 +169,48 @@ header {
 	color: #fff;
 }
 
-@media (max-width: 766px) {
+@media (max-width: 1260px) {
 	html {
 		font-size: 55%;
+	}
+
+	.logo a{
+		margin-left: 2rem;
+	}
+
+	.container-navbar{
+		height: fit-content;
+		padding: 2.5rem 0;
+		margin-bottom: 5px;
+		position: relative;
 	}
 	
 	.navbar {
 		padding: 1rem 2rem;
+	}
+
+	#nav {
+		display: none;
+	}
+
+	#nav > .menu{
+		display: none;
+	}
+
+	.menu-comprimido:checked + #nav{
+		display: block;
+		height: auto;
+		padding: 4rem;
+		background-color: #055492;
+		position: absolute;
+		top:149px;
+		z-index: 1;
+	}
+
+	.menu-comprimido:checked + #nav > .menu{
+		display: flex;
+		flex-direction: column;
+		gap: 10rem;
 	}
 	
 	#menu-abrir {
@@ -164,23 +220,6 @@ header {
 		cursor: pointer;
 		transition: opacity 0.3s, visibility 0.3s;
 	}
-	
-	.navbar {
-		display: flex;
-		position: absolute;
-		flex-direction: column;
-		align-items: end;
-		top: 0;
-		right: 0;
-		gap: 1rem;
-		background-color: #055492;
-		padding: 5rem;
-		box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.5);
-		height: 100vh;
-		opacity: 0;
-		visibility: hidden;
-		transition: opacity 0.3s, visibility 0.3s;
-	}
 
 	.navbar.visible {
 		opacity: 1;
@@ -188,8 +227,13 @@ header {
 	}
 
 	.menu {
-		flex-direction: column;
-		align-items: start;
+	
+		align-items: center;
+	}
+
+	.icono-menu-comprimido{
+		display: flex;
+		cursor: pointer;
 	}
 
 	#menu-cerrar {
@@ -210,5 +254,17 @@ header {
 
 	#btnIngresar {
 		font-size: 17px;
+	}
+}
+
+@media(max-width : 900px){
+
+	#ingreso{
+		flex-direction: column;
+		gap: 2rem;
+	}
+
+	.menu-comprimido:checked + #nav {
+		top:175px;
 	}
 }
