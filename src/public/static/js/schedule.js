@@ -43,7 +43,8 @@ $('#calendar').on('selectEvent', function(event, activeEvent) {
         fecha: fecha,
         antc: document.getElementById('chequeo').value,
         diag: document.getElementById('diag').value,
-        trat: document.getElementById('trat').value
+        trat: document.getElementById('trat').value,
+        mont: document.getElementById('mont').value
       };
     const url = '/registrarFicha';
     const opciones = {

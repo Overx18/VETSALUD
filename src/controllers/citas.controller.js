@@ -1,4 +1,4 @@
-const CitasModel = require('../models/citas.model');
+const CitasModel = require('../models/citas.model.js');
 
 function obtenerCitas(req, res) {
   CitasModel.obtenerCitas((error, results) => {

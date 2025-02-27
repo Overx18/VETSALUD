@@ -9,7 +9,7 @@ function obtenerClientes(callback) {
       return callback(error, null);
     }
 
-    connection.query('SELECT * FROM vw_datoscliente', (err, results) => {
+    connection.query('SELECT * FROM VW_DATOSCLIENTE', (err, results) => {
       connection.end();
       if (err) {
         return callback(err, null);
