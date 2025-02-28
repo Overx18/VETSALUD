@@ -1,4 +1,4 @@
-const ClienteModel = require('../models/cliente.model');
+const ClienteModel = require('../models/cliente.model.js');
 const path = require('path');
 const fs = require('fs');
 const { createConnection } = require('../database/database.js');

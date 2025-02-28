@@ -1,4 +1,4 @@
-const FichaMedicaModel = require('../models/fichaMedica.model');
+const FichaMedicaModel = require('../models/fichaMedica.model.js');
 const path = require('path');
 
 function obtenerFichasMedicas(req, res) {

@@ -61,7 +61,7 @@ router.post('/signUp.html', async (req, res) => {
 
   ClienteController.registrarUsuario(nuevoUsuario, (error, resultado) => {
     if (error) {
-      console.log(error);
+      console.log("Error detallado:", error);
       res.status(500).json({ error: 'Error al registrar usuario' });
     }else{
       enviarCorreoElectronico(correo);
@@ -312,12 +312,12 @@ router.post('/registrarCita', async (req, res) => {
 });
 
 router.post('/registrarFicha', async (req, res) => {
-  const { citaId, fecha, antc, diag, trat } = req.body;
+  const { citaId, fecha, antc, diag, trat, mont} = req.body;
 
-  console.log('Datos recibidos:', { citaId, fecha, antc, diag, trat });
+  console.log('Datos recibidos:', { citaId, fecha, antc, diag, trat, mont });
 
 
-  FichaMedicaController.guardarFichaMedica(req, res,{citaId, fecha, antc, diag, trat}, (error, resultado) => {
+  FichaMedicaController.guardarFichaMedica(req, res,{citaId, fecha, antc, diag, trat, mont}, (error, resultado) => {
     if (error) {
       console.error('Error al registrar los datos:', error);
       return res.status(500).json({ error: 'Error al registrar los datos' });

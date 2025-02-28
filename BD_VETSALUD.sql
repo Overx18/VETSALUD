@@ -1,6 +1,6 @@
-CREATE DATABASE BD_VETSALUD;
-USE BD_VETSALUD; 
-
+CREATE DATABASE BD_VETERINARIA;
+USE BD_VETERINARIA; 
+SELECT * FROM TB_FICHA_MEDICA;
 ----------------- TABLAS --------------------
 CREATE TABLE TB_USUARIO(
 	ID_USUARIO INT AUTO_INCREMENT PRIMARY KEY,
@@ -45,9 +45,60 @@ CREATE TABLE TB_FICHA_MEDICA(
     ANTECEDENTES VARCHAR(255) NOT NULL,
     DIAGNOSTICO VARCHAR(255) NOT NULL, 
     TRATAMIENTO VARCHAR(255) NOT NULL, 
-    
+    MONTO VARCHAR(10) NOT NULL, 
     CONSTRAINT FK_CITA01 FOREIGN KEY(ID_CITA) REFERENCES TB_CITAS(ID_CITA) ON DELETE CASCADE
 );
+
+----------------- INSERCIÓN DE DATOS --------------------
+
+INSERT INTO TB_USUARIO(DNI_USUARIO, NOMBRES_USUARIO, APELLIDOS_USUARIO, DIRECCION_USUARIO,CELULAR_USUARIO,
+						EMAIL_USUARIO, PASSWORD_USUARIO, ROL_USUARIO)
+VALUES('75632148', 'Alejandro Saul', 'Rojas Gamboa', 'Av. Arequipa 4563', 965823179, 'alejandrorojas@gmail.com', '1234', 'Cliente');
+INSERT INTO TB_USUARIO(DNI_USUARIO, NOMBRES_USUARIO, APELLIDOS_USUARIO, DIRECCION_USUARIO,CELULAR_USUARIO,
+						EMAIL_USUARIO, PASSWORD_USUARIO, ROL_USUARIO)
+VALUES('735417658', 'Maria Alejandra', 'Clemente Malasquez', 'Av. Tacna 6354', 975621493, 'mariaalejandrac@gmail.com', '7894', 'Cliente');
+INSERT INTO TB_USUARIO(DNI_USUARIO, NOMBRES_USUARIO, APELLIDOS_USUARIO, DIRECCION_USUARIO,CELULAR_USUARIO,
+						EMAIL_USUARIO, PASSWORD_USUARIO, ROL_USUARIO)
+VALUES('745612899', 'Camila Isabel', 'Dioses Ramos', 'Calle German Stiglich 4563', 963547819, 'camiladioses@gmail.com', '56Alos8', 'Cliente');
+INSERT INTO TB_USUARIO(DNI_USUARIO, NOMBRES_USUARIO, APELLIDOS_USUARIO, DIRECCION_USUARIO,CELULAR_USUARIO,
+						EMAIL_USUARIO, PASSWORD_USUARIO, ROL_USUARIO)
+VALUES('78549657', 'Renzo Ricardo', 'Vasquez Perez', 'Calle C 10', 935689412, 'renzovasquez@gmail.com', 'REDU96547', 'Administrador');
+
+
+INSERT INTO TB_MASCOTAS(ID_USUARIO,NOMBRE_MASCOTA, ESPECIE_MASCOTA, SEXO_MASCOTA, RAZA_MASCOTA, FECHA_NACIMIENTO_MASCOTA,
+						IMAGEN_MASCOTA, EVIDENCIA_MASCOTA)
+VALUES(1,'Zeus', 'Perro', 'M', 'Pitbull', '2022-10-03',
+		'https://t1.uc.ltmcdn.com/es/posts/1/1/1/como_adiestrar_a_un_pitbull_34111_orig.jpg',
+        'https://www.kivet.com/wp-content/uploads/2022/08/calendario_vacunacion_perro.webp'); 
+INSERT INTO TB_MASCOTAS(ID_USUARIO,NOMBRE_MASCOTA, ESPECIE_MASCOTA, SEXO_MASCOTA, RAZA_MASCOTA, FECHA_NACIMIENTO_MASCOTA,
+						IMAGEN_MASCOTA, EVIDENCIA_MASCOTA)
+VALUES(2,'Copito', 'Conejo', 'F', 'MiniRex', '2023-01-22',
+		'https://wakyma.com/blog/wp-content/uploads/2017/06/Te-lo-contamos-todo-sobre-el-conejo-mini-rex',
+        'https://www.kivet.com/wp-content/uploads/2022/08/calendario_vacunacion_conejo.webp'); 
+INSERT INTO TB_MASCOTAS(ID_USUARIO,NOMBRE_MASCOTA, ESPECIE_MASCOTA, SEXO_MASCOTA, RAZA_MASCOTA, FECHA_NACIMIENTO_MASCOTA,
+						IMAGEN_MASCOTA, EVIDENCIA_MASCOTA)
+VALUES(3,'Rose', 'Gato', 'F', 'Britanico de pelo corto', '2022-03-18',
+		'https://smylepets.com/wp-content/uploads/2021/04/british-shorthair.jpg',
+        'https://www.kivet.com/wp-content/uploads/2022/08/calendario_vacunacion_gato.webp');
+
+INSERT INTO TB_CITAS(ID_MASCOTA, FECHA_HORA_CITA, MOTIVO_CITA)
+VALUES(1, '2023-11-12 15:30:00', 'Chequeo anual');
+
+INSERT INTO TB_CITAS(ID_MASCOTA, FECHA_HORA_CITA, MOTIVO_CITA)
+VALUES(2, '2023-11-12 13:30:00', 'Chequeo anual');
+        
+INSERT INTO TB_FICHA_MEDICA(ID_CITA, FECHA_CREACION, ANTECEDENTES, DIAGNOSTICO, TRATAMIENTO, MONTO)
+VALUES(1, NOW(), 'No tiene ningun tipo de alergias o enfermedades diagnosticadas anteriormente',
+		'Se encuentra bien de salud', 'Ninguno', '200');
+        
+INSERT INTO TB_FICHA_MEDICA(ID_CITA, FECHA_CREACION, ANTECEDENTES, DIAGNOSTICO, TRATAMIENTO, MONTO)
+VALUES(2, NOW(), 'No tiene ningun tipo de alergias o enfermedades diagnosticadas anteriormente',
+		'Se encuentra bien de salud', 'Ninguno', '60');
+        
+DELETE FROM TB_FICHA_MEDICA
+WHERE ID_FICHA = 3; 
+
+----------------- VISTAS --------------------
 
 CREATE OR REPLACE VIEW VW_DATOSCLIENTE
 AS 
@@ -59,6 +110,7 @@ FROM
     TB_USUARIO 
 WHERE 
     ROL_USUARIO != 'Administrador';
+    
 CREATE OR REPLACE VIEW VW_DETALLESCONSULTA
 AS 
 SELECT 
@@ -99,11 +151,12 @@ SELECT
 	M.NOMBRE_MASCOTA AS 'Nombre Mascota',
     CONCAT(SUBSTRING_INDEX(NOMBRES_USUARIO, ' ', 1), ' ', SUBSTRING_INDEX(APELLIDOS_USUARIO, ' ', 1)) AS 'Propietario',
     F.FECHA_CREACION AS 'Fecha',
-    CONCAT( 'Diagnóstico: ', F.DIAGNOSTICO, '\n', 'Tratamiento: ', F.TRATAMIENTO) AS 'Detalle consulta',
+    CONCAT( 'Diagnóstico: ', F.DIAGNOSTICO, '\n', 'Tratamiento: ', F.TRATAMIENTO, 'Monto: ', F.MONTO) AS 'Detalle consulta',
 	F.ID_FICHA AS 'IdFicha',
     F.DIAGNOSTICO AS 'Diagnostico',
 	F.TRATAMIENTO AS 'Tratamiento',
-    F.ANTECEDENTES AS 'Antecedentes'
+    F.ANTECEDENTES AS 'Antecedentes',
+    F.MONTO AS 'Monto'
 FROM 
 	TB_FICHA_MEDICA F INNER JOIN TB_CITAS C 
     ON F.ID_CITA = C.ID_CITA INNER JOIN TB_MASCOTAS M 
@@ -144,7 +197,7 @@ BEGIN
         NEW.ID_MASCOTA,
         NEW.FECHA_HORA_CITA,
         NEW.MOTIVO_CITA,
-        NOW(),
+        now(),
         USER(),
         'INS'
     );
@@ -218,6 +271,7 @@ CREATE TABLE TB_AUDITA_FICHA_MEDICA(
     ANTECEDENTES VARCHAR(255) NOT NULL,
     DIAGNOSTICO VARCHAR(255) NOT NULL, 
     TRATAMIENTO VARCHAR(255) NOT NULL,
+    MONTO VARCHAR(10) NOT NULL,
     UPDATED_AT DATETIME NOT NULL,
     USUARIO VARCHAR(50) NOT NULL,
     OPERATION CHAR(3),
@@ -236,7 +290,8 @@ BEGIN
 		FECHA_CREACION, 
 		ANTECEDENTES,
 		DIAGNOSTICO, 
-		TRATAMIENTO, 
+		TRATAMIENTO,
+        MONTO,
         UPDATED_AT,
         USUARIO,
         OPERATION
@@ -248,6 +303,7 @@ BEGIN
         NEW.ANTECEDENTES,
         NEW.DIAGNOSTICO,
         NEW.TRATAMIENTO,
+        NEW.MONTO,
         NOW(),
         USER(),
         'INS'
@@ -270,6 +326,7 @@ BEGIN
 		ANTECEDENTES,
 		DIAGNOSTICO, 
 		TRATAMIENTO, 
+        MONTO,
         UPDATED_AT,
         USUARIO,
         OPERATION
@@ -281,6 +338,7 @@ BEGIN
         OLD.ANTECEDENTES,
         OLD.DIAGNOSTICO,
         OLD.TRATAMIENTO,
+        MONTO,
         NOW(),
         USER(),
         'DEL'
@@ -302,7 +360,8 @@ BEGIN
 		FECHA_CREACION, 
 		ANTECEDENTES,
 		DIAGNOSTICO, 
-		TRATAMIENTO, 
+		TRATAMIENTO,
+        MONTO,
         UPDATED_AT,
         USUARIO,
         OPERATION
@@ -314,6 +373,7 @@ BEGIN
         NEW.ANTECEDENTES,
         NEW.DIAGNOSTICO,
         NEW.TRATAMIENTO,
+        NEW.MONTO,
         NOW(),
         USER(),
         'UPD'
@@ -321,3 +381,4 @@ BEGIN
 END //
 
 DELIMITER ;
+
