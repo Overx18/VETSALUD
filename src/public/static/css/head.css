@@ -106,6 +106,12 @@ header {
 	list-style: none;
 }
 
+#ingreso{
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+
 .menu a {
 	text-decoration: none;
 	font-size: 2rem;
@@ -113,6 +119,8 @@ header {
 	font-weight: 600;
 	position: relative;
 }
+
+
 
 .icono-menu-comprimido{
 	display: none;
@@ -175,7 +183,7 @@ header {
 	}
 
 	.logo a{
-		margin-left: 2rem;
+		margin:0 3rem;
 	}
 
 	.container-navbar{
@@ -259,12 +267,7 @@ header {
 
 @media(max-width : 900px){
 
-	#ingreso{
-		flex-direction: column;
-		gap: 2rem;
-	}
-
 	.menu-comprimido:checked + #nav {
-		top:175px;
+		top:149px;
 	}
 }
